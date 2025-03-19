@@ -1,0 +1,17 @@
+[user]
+	name = Gus3245
+	email = Enderdragon3245@gmail.com
+
+[credential]
+	helper = store
+[init]
+	defaultBranch = main
+
+[alias]
+	st = status
+	co = commit
+	br = branch
+	ch = checkout
+	last = log -1 HEAD
+[core]
+	editor = lunarvim

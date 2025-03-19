@@ -1,0 +1,49 @@
+reload("user.keymaps")
+reload("user.plugins")
+
+lvim.transparent_window = true;
+
+-- Importar as configurações de lsp do lvim
+local lspconfig = require("lspconfig")
+
+-- Adicionar configuração para o Ruff LSP
+lspconfig.ruff_lsp.setup({
+    cmd = { "ruff-lsp" },
+    filetypes = { "python" },
+    root_dir = lspconfig.util.root_pattern(".git", vim.fn.getcwd()),
+    settings = {
+        args = {},
+    },
+})
+-- Adicionar configuração para o Rust Analyzer
+lspconfig.rust_analyzer.setup({
+    on_attach = function(_, bufnr)
+        vim.api.nvim_buf_set_option(bufnr, "formatexpr", "v:lua.vim.lsp.formatexpr()")
+    end,
+    settings = {
+        ["rust-analyzer"] = {
+            cargo = { allFeatures = true },
+            checkOnSave = {
+                command = "clippy",
+            },
+        },
+    },
+})
+
+-- AutoCmd para executar o formatador Ruff ao salvar o arquivo
+vim.api.nvim_create_autocmd("BufWritePre", {
+    pattern = "*.py",
+    callback = function()
+        vim.lsp.buf.format({ async = false })
+    end,
+})
+
+
+-- AutoCmd para executar o formatador Rust ao salvar o arquivo Rust
+vim.api.nvim_create_autocmd("BufWritePre", {
+    pattern = "*.rs",
+    callback = function()
+        vim.lsp.buf.format({ async = false })
+    end,
+})
+

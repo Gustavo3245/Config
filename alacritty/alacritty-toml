@@ -1,0 +1,28 @@
+[env]
+  TERM = "xterm-256color"
+
+# This section documents the [window] table of the configuration file.
+[window]
+	opacity = 0.8
+	decorations = "Buttonless"
+  blur = true
+  option_as_alt = "Both"
+
+# This section documents the [font] table of the configuration file.
+[font]
+	normal = { family = "FiraCodeNerdFont", style = "Italic" }
+	size = 11.50
+
+# This section documents the [bell] table of the configuration file.
+[bell]
+	animation = "EaseOut"
+	duration = 1
+	command = "ls"
+
+# This import depends on the theme packages.
+[general]
+  import = [
+      "~/.config/alacritty/themes/themes/coolnight.toml",
+  ]
+#git clone https://github.com/alacritty/alacritty-theme themes
+#curl https://raw.githubusercontent.com/josean-dev/dev-environment-files/main/.config/alacritty/themes/themes/coolnight.toml --output ~/.config/alacritty/themes/themes/coolnight.toml

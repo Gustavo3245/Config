@@ -1,13 +1,10 @@
 [env]
   TERM = "xterm-256color"
-
 # This section documents the [window] table of the configuration file.
 [window]
 	opacity = 0.8
 	decorations = "Buttonless"
-  blur = true
   option_as_alt = "Both"
-
 # This section documents the [font] table of the configuration file.
 [font]
 	normal = { family = "FiraCodeNerdFont", style = "Italic" }
@@ -20,9 +17,45 @@
 	command = "ls"
 
 # This import depends on the theme packages.
-[general]
-  import = [
-      "~/.config/alacritty/themes/themes/coolnight.toml",
-  ]
+
 #git clone https://github.com/alacritty/alacritty-theme themes
 #curl https://raw.githubusercontent.com/josean-dev/dev-environment-files/main/.config/alacritty/themes/themes/coolnight.toml --output ~/.config/alacritty/themes/themes/coolnight.toml
+
+# Kanso Ink Alacritty Colors
+
+[colors.primary]
+background = '#14171d'
+foreground = '#C5C9C7'
+
+[colors.normal]
+black = '#14171d'
+red = '#c4746e'
+green = '#8a9a7b'
+yellow = '#c4b28a'
+blue = '#8ba4b0'
+magenta = '#a292a3'
+cyan = '#8ea4a2'
+white = '#c8c093'
+
+[colors.bright]
+black = '#A4A7A4'
+red = '#e46876'
+green = '#87a987'
+yellow = '#e6c384'
+blue = '#7fb4ca'
+magenta = '#938aa9'
+cyan = '#7aa89f'
+white = '#C5C9C7'
+
+[colors.selection]
+background = '#393B42'
+foreground = '#C5C9C7'
+
+[[colors.indexed_colors]]
+index = 16
+color = '#b6927b'
+
+[[colors.indexed_colors]]
+index = 17
+color = '#b98d7b'
+

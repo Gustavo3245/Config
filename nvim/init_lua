@@ -1,0 +1,46 @@
+-- Setings important keymaps and values.
+vim.opt.number = true
+vim.opt.relativenumber = true
+vim.opt.expandtab = true
+vim.opt.shiftwidth = 4
+vim.opt.tabstop = 4
+vim.g.mapleader = " "
+
+-- Inicialization of Lazy Package manage Lazy.vim
+vim.opt.rtp:prepend("~/.local/share/nvim/lazy/lazy.nvim")
+
+-- Inicialization Opts and Plugins for neovim runtime lazy.
+local opts = {}
+local plugins = {
+    { "webhooked/kanso.nvim",lazy = false,priority = 1000},
+    {
+    'nvim-telescope/telescope.nvim', tag = '0.1.8',
+      dependencies = { 'nvim-lua/plenary.nvim' }
+    },
+    {"nvim-treesitter/nvim-treesitter", branch = 'master', lazy = false, build = ":TSUpdate"}
+}
+
+require("lazy").setup(plugins, opts)
+local builtin = require("telescope.builtin")
+
+-- Configuração opcional 
+require("kanso").setup({
+  theme = "zen",          -- zen | ink | mist | pearl
+  undercurl = true,
+  italics = true,
+  transparent = false,
+  -- outras opções conforme README
+})
+
+-- telescope keymaps and vim colorscheme.
+vim.cmd.colorscheme("kanso-zen")
+vim.keymap.set('n', '<C-p>', builtin.find_files, {})
+vim.keymap.set('n', '<leader>fg', builtin.live_grep, {})
+
+-- Treesitter Basic Configuration
+local config = require("nvim-treesitter.configs")
+config.setup({
+    ensure_installed = {"lua", "c", "vim", "vimdoc", "markdown", "markdown_inline" },
+    indent = {enable = true},
+    highlight = {enable = true},
+})
